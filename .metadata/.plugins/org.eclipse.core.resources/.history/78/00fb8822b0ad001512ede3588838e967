@@ -1,0 +1,75 @@
+package com.ibmcloud;
+
+import com.ibmcloud.ToDoBean;
+import com.ibmcloud.data.*;
+import java.io.IOException;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TestToDo
+ */
+@WebServlet("/TestToDo")
+public class TestToDo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+    @EJB
+	private ToDoBean todoBean;
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TestToDo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String op = request.getParameter("op");
+		response.getWriter().append("<p>Served at: ").append(request.getContextPath()).append(request.getQueryString()).append("</p>");
+		if (op.isEmpty() || op.equals(null)) {
+			response.getWriter().append("<p><b>Error</b>: No operation, exiting</p>");
+		} else {
+			response.getWriter().append("<p>Operation: "+op+"</p>");
+			if (op.equals("addUser")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("password")!=null)) {
+					Operation opr = todoBean.addUser(request.getParameter("name"), request.getParameter("password"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>"+opr.getResult().toString()+"</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			} else if (op.equals("authUser")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("password")!=null)) {
+					Operation opr = todoBean.addUser(request.getParameter("name"), request.getParameter("password"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>Authenticated</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			} else if (op.equals("delUser")) {
+			} else if (op.equals("addTodo")) {
+			} else if (op.equals("delTodo")) {
+			} else if (op.equals("listTodo")) {
+			
+			}
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

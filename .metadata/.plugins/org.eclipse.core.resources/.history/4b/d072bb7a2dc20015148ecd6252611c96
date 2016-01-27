@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="BackEnd">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="TodoEJB.jar" deploy-path="/" handle="module:/resource/TodoEJB/TodoEJB">
+            <dependent-object>Module_1450728202140</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="TodoEJBClient.jar" deploy-path="/" handle="module:/resource/TodoEJBClient/TodoEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BackEndREST.war" deploy-path="/" handle="module:/resource/BackEndREST/BackEndREST">
+            <dependent-object>Module_1451570743191</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BackEndREST.war" deploy-path="/" handle="module:/resource/BackEndREST/BackEndREST">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="BackEndWS.war" deploy-path="/" handle="module:/resource/BackEndWS/BackEndWS">
+            <dependent-object>Module_1453164891162</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

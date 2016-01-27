@@ -1,0 +1,15 @@
+package com.ibmcloud;
+
+import javax.ws.rs.core.Application;
+import java.util.Set;
+import java.util.HashSet;
+
+@ApplicationPath("/ToDoApp")
+public class JaxRsApplication extends Application {
+	@Override
+	public Set<Class<?>> getClasses() {
+		Set<Class<?>> classes = new HashSet<Class<?>>();
+		classes.add(BackEndREST.class);
+		return classes;
+	}
+}

@@ -1,0 +1,7 @@
+package com.ibmcloud;
+
+import javax.ws.rs.core.Application;
+
+public class JaxRsApplication extends Application {
+
+}

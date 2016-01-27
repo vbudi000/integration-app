@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="FrontEnd">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="FrontEndREST.war" deploy-path="/" handle="module:/resource/FrontEndREST/FrontEndREST">
+            <dependent-object>Module_1450728286744</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FrontEndJDBC.war" deploy-path="/" handle="module:/resource/FrontEndJDBC/FrontEndJDBC">
+            <dependent-object>Module_1452298412309</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FrontEndSelector.war" deploy-path="/" handle="module:/resource/FrontEndSelector/FrontEndSelector">
+            <dependent-object>Module_1452399126351</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FrontEndWS.war" deploy-path="/" handle="module:/resource/FrontEndWS/FrontEndWS">
+            <dependent-object>Module_1452478215923</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="FrontEndJMS.war" deploy-path="/" handle="module:/resource/FrontEndJMS/FrontEndJMS">
+            <dependent-object>Module_1453812915601</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

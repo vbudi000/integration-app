@@ -1,0 +1,15 @@
+#Sat Jan 23 18:20:09 CST 2016
+BackEnd/BackEndREST/=BackEndREST.war
+AwesomeJMSEAR/AwesomeJMS/=AwesomeJMS.war
+FrontEnd/FrontEndWS/=FrontEndWS.war
+FrontEnd/FrontEndSelector/=FrontEndSelector.war
+FrontEnd/FrontEndREST/=FrontEndREST.war
+BackEnd/BackEndJMS/=BackEndJMS.war
+EnterpriseApps/JDBCProject/=JDBCProject.war
+FrontEnd/FrontEndJDBC/=FrontEndJDBC.war
+BackEnd/BackEndWS/=BackEndWS.war
+FrontEnd/FrontEndJMS/=FrontEndJMS.war
+BackEnd/BackEndJMSClient/=BackEndJMSClient.jar
+EnterpriseApps/JDBCApps/=JDBCApps.war
+BackEnd/TodoEJB/=TodoEJB.jar
+BackEnd/TodoEJBClient/=TodoEJBClient.jar

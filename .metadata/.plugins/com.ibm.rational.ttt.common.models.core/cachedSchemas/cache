@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.ibm.rational.test.lt.models.wscore.xsd:XSDCache xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.rational.test.lt.models.wscore.xsd="http:///com/ibm/rational/test/lt/models/wscore/xsd.ecore">
+  <entries url="http://schemas.xmlsoap.org/soap/envelope/" lastCheck="1453351245028" localFile="0"/>
+  <entries url="http://schemas.xmlsoap.org/soap/encoding/" lastCheck="1453351245054" localFile="1"/>
+  <entries url="http://www.w3.org/2001/XMLSchema.xsd" lastCheck="1453351245106" localFile="2"/>
+  <entries url="http://www.w3.org/2001/xml.xsd" lastCheck="1453351245332" localFile="3"/>
+  <entries url="http://www.w3.org/2004/08/xop/include" lastCheck="1453351245722" localFile="4"/>
+  <entries url="http://www.w3.org/2006/03/addressing/ws-addr.xsd" lastCheck="1453351249200" localFile="5"/>
+  <entries url="http://schemas.xmlsoap.org/ws/2004/08/addressing/" lastCheck="1453351249230" localFile="6"/>
+</com.ibm.rational.test.lt.models.wscore.xsd:XSDCache>

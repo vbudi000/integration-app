@@ -1,0 +1,182 @@
+package com.ibmcloud.ws;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import java.net.URL;
+
+import javax.xml.namespace.QName;
+import javax.xml.transform.Source;
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.Dispatch;
+import javax.xml.ws.Service;
+import javax.xml.ws.soap.SOAPBinding;
+import java.util.concurrent.Future;
+import javax.xml.ws.Action;
+import javax.xml.ws.AsyncHandler;
+import javax.xml.ws.Response;
+
+public class ToDoWebServicesPortProxy{
+
+    protected Descriptor _descriptor;
+
+    public class Descriptor {
+        private com.ibmcloud.ws.ToDoWebServicesService _service = null;
+        private com.ibmcloud.ws.ToDoWebServicesDelegate _proxy = null;
+        private Dispatch<Source> _dispatch = null;
+        private boolean _useJNDIOnly = false;
+
+        public Descriptor() {
+            init();
+        }
+
+        public Descriptor(URL wsdlLocation, QName serviceName) {
+            _service = new com.ibmcloud.ws.ToDoWebServicesService(wsdlLocation, serviceName);
+            initCommon();
+        }
+
+        public void init() {
+            _service = null;
+            _proxy = null;
+            _dispatch = null;
+            try
+            {
+                InitialContext ctx = new InitialContext();
+                _service = (com.ibmcloud.ws.ToDoWebServicesService)ctx.lookup("java:comp/env/service/ToDoWebServicesService");
+            }
+            catch (NamingException e)
+            {
+                if ("true".equalsIgnoreCase(System.getProperty("DEBUG_PROXY"))) {
+                    System.out.println("JNDI lookup failure: javax.naming.NamingException: " + e.getMessage());
+                    e.printStackTrace(System.out);
+                }
+            }
+
+            if (_service == null && !_useJNDIOnly)
+                _service = new com.ibmcloud.ws.ToDoWebServicesService();
+            initCommon();
+        }
+
+        private void initCommon() {
+            _proxy = _service.getToDoWebServicesPort();
+        }
+
+        public com.ibmcloud.ws.ToDoWebServicesDelegate getProxy() {
+            return _proxy;
+        }
+
+        public void useJNDIOnly(boolean useJNDIOnly) {
+            _useJNDIOnly = useJNDIOnly;
+            init();
+        }
+
+        public Dispatch<Source> getDispatch() {
+            if (_dispatch == null ) {
+                QName portQName = new QName("", "ToDoWebServicesPort");
+                _dispatch = _service.createDispatch(portQName, Source.class, Service.Mode.MESSAGE);
+
+                String proxyEndpointUrl = getEndpoint();
+                BindingProvider bp = (BindingProvider) _dispatch;
+                String dispatchEndpointUrl = (String) bp.getRequestContext().get(BindingProvider.ENDPOINT_ADDRESS_PROPERTY);
+                if (!dispatchEndpointUrl.equals(proxyEndpointUrl))
+                    bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, proxyEndpointUrl);
+            }
+            return _dispatch;
+        }
+
+        public String getEndpoint() {
+            BindingProvider bp = (BindingProvider) _proxy;
+            return (String) bp.getRequestContext().get(BindingProvider.ENDPOINT_ADDRESS_PROPERTY);
+        }
+
+        public void setEndpoint(String endpointUrl) {
+            BindingProvider bp = (BindingProvider) _proxy;
+            bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpointUrl);
+
+            if (_dispatch != null ) {
+                bp = (BindingProvider) _dispatch;
+                bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpointUrl);
+            }
+        }
+
+        public void setMTOMEnabled(boolean enable) {
+            SOAPBinding binding = (SOAPBinding) ((BindingProvider) _proxy).getBinding();
+            binding.setMTOMEnabled(enable);
+        }
+    }
+
+    public ToDoWebServicesPortProxy() {
+        _descriptor = new Descriptor();
+        _descriptor.setMTOMEnabled(false);
+    }
+
+    public ToDoWebServicesPortProxy(URL wsdlLocation, QName serviceName) {
+        _descriptor = new Descriptor(wsdlLocation, serviceName);
+        _descriptor.setMTOMEnabled(false);
+    }
+
+    public Descriptor _getDescriptor() {
+        return _descriptor;
+    }
+
+    public Response<AddUserResponse> addUserAsync(String arg0, String arg1) {
+        return _getDescriptor().getProxy().addUserAsync(arg0,arg1);
+    }
+
+    public Future<?> addUserAsync(String arg0, String arg1, AsyncHandler<AddUserResponse> asyncHandler) {
+        return _getDescriptor().getProxy().addUserAsync(arg0,arg1,asyncHandler);
+    }
+
+    public Operation addUser(String arg0, String arg1) {
+        return _getDescriptor().getProxy().addUser(arg0,arg1);
+    }
+
+    public Response<AuthUserResponse> authUserAsync(String arg0, String arg1) {
+        return _getDescriptor().getProxy().authUserAsync(arg0,arg1);
+    }
+
+    public Future<?> authUserAsync(String arg0, String arg1, AsyncHandler<AuthUserResponse> asyncHandler) {
+        return _getDescriptor().getProxy().authUserAsync(arg0,arg1,asyncHandler);
+    }
+
+    public Operation authUser(String arg0, String arg1) {
+        return _getDescriptor().getProxy().authUser(arg0,arg1);
+    }
+
+    public Response<AddToDoResponse> addToDoAsync(String arg0, String arg1, String arg2) {
+        return _getDescriptor().getProxy().addToDoAsync(arg0,arg1,arg2);
+    }
+
+    public Future<?> addToDoAsync(String arg0, String arg1, String arg2, AsyncHandler<AddToDoResponse> asyncHandler) {
+        return _getDescriptor().getProxy().addToDoAsync(arg0,arg1,arg2,asyncHandler);
+    }
+
+    public Operation addToDo(String arg0, String arg1, String arg2) {
+        return _getDescriptor().getProxy().addToDo(arg0,arg1,arg2);
+    }
+
+    public Response<DelToDoResponse> delToDoAsync(String arg0, int arg1, String arg2, String arg3) {
+        return _getDescriptor().getProxy().delToDoAsync(arg0,arg1,arg2,arg3);
+    }
+
+    public Future<?> delToDoAsync(String arg0, int arg1, String arg2, String arg3, AsyncHandler<DelToDoResponse> asyncHandler) {
+        return _getDescriptor().getProxy().delToDoAsync(arg0,arg1,arg2,arg3,asyncHandler);
+    }
+
+    public Operation delToDo(String arg0, int arg1, String arg2, String arg3) {
+        return _getDescriptor().getProxy().delToDo(arg0,arg1,arg2,arg3);
+    }
+
+    public Response<ListToDoResponse> listToDoAsync(String arg0) {
+        return _getDescriptor().getProxy().listToDoAsync(arg0);
+    }
+
+    public Future<?> listToDoAsync(String arg0, AsyncHandler<ListToDoResponse> asyncHandler) {
+        return _getDescriptor().getProxy().listToDoAsync(arg0,asyncHandler);
+    }
+
+    public Operation listToDo(String arg0) {
+        return _getDescriptor().getProxy().listToDo(arg0);
+    }
+
+}

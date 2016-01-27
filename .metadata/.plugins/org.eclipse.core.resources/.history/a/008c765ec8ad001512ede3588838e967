@@ -1,0 +1,14 @@
+package com.ibmcloud;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.Response;
+import org.eclipse.persistence.oxm.MediaType;
+
+@Path("/ToDoREST")
+public class BackEndREST {
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject addUser() {
+		
+	}
+}

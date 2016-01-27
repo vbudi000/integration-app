@@ -1,0 +1,63 @@
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>ejbLite-3.2</feature>
+        <feature>jaxrs-2.0</feature>
+        <feature>jdbc-4.1</feature>
+        <feature>localConnector-1.0</feature>
+		<feature>webProfile-7.0</feature>
+		<feature>jaxws-2.2</feature>
+		<feature>json-1.0</feature>
+		<!-- feature>jca-1.7</feature -->
+		<feature>wasJmsServer-1.0</feature>
+		<feature>servlet-3.1</feature>
+		<feature>jms-2.0</feature>
+		<feature>jaxrsClient-2.0</feature>
+		<feature>jsonp-1.0</feature>
+		<feature>wasJmsClient-2.0</feature>
+		<!--  feature>javaee-7.0</feature -->
+		<feature>mdb-3.2</feature>
+	</featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+
+	<!-- Automatically expand WAR files and EAR files -->
+	<applicationManager autoExpand="true"/>
+
+    <applicationMonitor updateTrigger="mbean"/>
+    <dataSource jndiName="jdbc/postgreSQL">
+        <jdbcDriver javax.sql.XADataSource="org.postgresql.xa.PGXADataSource">
+            <library name="postgreLibrary">
+                <fileset dir="${shared.resource.dir}"/>
+            </library>
+        </jdbcDriver>
+        <properties databaseName="postgres" password="{xor}Lz4sLChvLTs=" portNumber="5432" serverName="localhost" user="postgres"/>
+    </dataSource>
+    <messagingEngine>
+    	<queue id="cloudQ" maintainStrictOrder="true"/>
+    	<queue id="cloudReplyQ" maintainStrictOrder="true"/>
+    </messagingEngine>
+    <connectionManager id="ConMgr2" maxPoolSize="2"/>
+    <jmsQueue id="cloudQ" jndiName="jms/cloudQ">
+    	<properties.wasJms queueName="cloudQ"/>
+    </jmsQueue>
+    <jmsQueue id="cloudReplyQ" jndiName="jms/cloudReplyQ">
+    	<properties.wasJms queueName="cloudReplyQ"/>
+    </jmsQueue>
+    <jmsQueueConnectionFactory connectionManagerRef="ConMgr2" jndiName="jms/cloudQCF">
+    	<properties.wasJms/>
+    </jmsQueueConnectionFactory>
+    <enterpriseApplication id="BackEnd" location="BackEnd.ear" name="BackEnd"/>
+    <keyStore id="defaultKeyStore" password="{xor}Lz4sLChvLTs="/>
+    <basicRegistry id="basic" realm="BasicRealm">
+        <user name="wasadmin" password="{xor}Lz4sLChvLTs="/>
+    </basicRegistry>
+    <enterpriseApplication id="FrontEnd" location="FrontEnd.ear" name="FrontEnd"/>
+    <jmsActivationSpec id="BackEnd/BackEndJMS/ToDoMDB">
+    	<properties.wasJms connectionFactoryLookup="jms/cloudQCF" destinationLookup="jms/cloudQ" destinationRef="cloudQ"/>
+    </jmsActivationSpec>
+
+    <enterpriseApplication id="AwesomeJMSEAR" location="AwesomeJMSEAR.ear" name="AwesomeJMSEAR"/>
+</server>

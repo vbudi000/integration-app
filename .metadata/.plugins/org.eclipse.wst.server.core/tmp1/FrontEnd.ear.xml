@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+    <archive targetInArchive="/FrontEndREST.war">
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndREST\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndREST\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/FrontEndJDBC.war">
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndJDBC\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndJDBC\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/FrontEndSelector.war">
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndSelector\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndSelector\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/FrontEndWS.war">
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndWS\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndWS\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/FrontEndJMS.war">
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndJMS\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\FrontEndJMS\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <dir sourceOnDisk="C:\BMX\workspace\FrontEnd" targetInArchive="/"/>
+</archive>

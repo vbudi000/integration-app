@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="J2EE_EXPORT_OVERWRITE"/>
+	<item value="FrontEnd" key="LASTEARNAME_"/>
+	<item value="true" key="J2EE_EXPORT_SOURCE"/>
+	<list key="J2EE_EXPORT_JST_EAR">
+		<item value="C:\VBDData\FrontEnd.ear"/>
+		<item value="C:\VBDData\BackEnd.ear"/>
+	</list>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="Server1"/>
+	</list>
+</section>

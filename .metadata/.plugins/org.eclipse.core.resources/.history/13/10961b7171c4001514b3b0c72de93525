@@ -1,0 +1,113 @@
+package com.ibmcloud.servlet;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.annotation.Resource;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+
+import com.ibmcloud.data.Operation;
+import com.ibmcloud.data.ToDo;
+
+/**
+ * Servlet implementation class ToDoServlet
+ */
+@WebServlet("/ToDoServlet")
+public class ToDoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public ToDoServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String action = request.getParameter("Action");
+
+		if (action.equals("Delete")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String category = request.getParameter("category");
+			String description = request.getParameter("description");
+			JsonObject op = this.delToDo(name, id, category, description);
+	    	response.sendRedirect("ToDoListServlet?name="+name+"&msg="+op.getString("message"));
+		} else if (action.equals("Add")) {
+			String category = request.getParameter("category");
+			String description = request.getParameter("description");
+			JsonObject op = this.addToDo(name, category, description);
+	    	response.sendRedirect("ToDoListServlet?name="+name+"&msg="+op.getString("message"));
+		} else if (action.equals("Logoff")) {
+	    	response.sendRedirect("UserLogin.jsp?msg=Logged out");
+		} else {
+			System.out.println("ToDoServlet - action unknown = "+action);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+	
+    public JsonObject addToDo(String name, String category, String description) {
+    	JsonObjectBuilder jsonReq = Json.createObjectBuilder();
+    	JsonObject jsonResp;
+    	Client client = ClientBuilder.newClient();
+		WebTarget target = client.target("http://localhost:9080/BackEndREST/ToDoRESTApp/ToDoREST");
+		Invocation.Builder builder = target.request("application/json");
+		jsonReq.add("name", name);
+		jsonReq.add("category", category);
+		jsonReq.add("description", description);
+    	jsonReq.add("action", "addToDo");
+		Response result = builder.post(Entity.entity(jsonReq.build(), "application/json"));
+		jsonResp = result.readEntity(JsonObject.class);
+
+    	return jsonResp;
+    }
+
+
+	
+    public JsonObject delToDo(String name, int id, String category, String description) {
+    	Operation op = new Operation();
+    	
+    	String todoCheck = "SELECT count(*) FROM todos WHERE NAME = '"+name+"' AND id = "+id+" AND category = '"+category+"' AND description = '"+description+"'";
+	    try {
+		    Connection con = ds.getConnection();
+	    	Statement stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(todoCheck);
+	    	rs.next();
+	    	int numrows = rs.getInt(1);
+	    	if (numrows==1) {
+	    		Statement stmt2 = con.createStatement();
+	    	    String delete = "DELETE from todos WHERE NAME = '"+name+"' AND id = "+id+" AND category = '"+category+"' AND description = '"+description+"'";
+	    		stmt2.executeUpdate(delete);
+	    		stmt2.close();
+	    	} else {
+	    		op.setMessage("To Do item does not exist");
+	    		op.setRC(10);
+	    	}
+	    } catch (Exception e ) {
+	    	e.printStackTrace();
+    		op.setMessage("SQL exception: "+e.getMessage()+"; SQL state: "+e.getSQLState());
+    		op.setRC(11);
+	    } 
+
+    	return op;
+    }
+
+
+}

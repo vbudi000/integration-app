@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="com.ibm.ast.ws.jaxws.creation.ui.widget.JaxWSClientWidget.wsdlFileText_">
+		<item value="ToDoWebServicesService.wsdl"/>
+	</list>
+	<list key="com.ibm.ast.ws.jaxws.creation.ui.widget.JaxWSClientWidget.wsdlFolderText_">
+	</list>
+	<list key="org.eclipse.jst.ws.internal.consumption.ui.widgets.test.ClientTestWidget.wsdlFolderText_">
+	</list>
+	<list key="com.ibm.ast.ws.jaxws.creation.ui.widget.JaxWSBottomUpWSDLConfigWidget.wsdlTargetNamespace">
+		<item value="http://ws.ibmcloud.com/"/>
+	</list>
+	<list key="org.eclipse.jst.ws.internal.consumption.ui.widgets.test.ClientTestWidget.wsdlFileText_">
+		<item value="ToDoWebServicesService.wsdl"/>
+	</list>
+	<list key="com.ibm.ast.ws.jaxws.creation.ui.widget.JaxWSBottomUpWSDLConfigWidget.wsdlServiceName">
+		<item value="ToDoWebServicesService"/>
+	</list>
+	<list key="com.ibm.ast.ws.jaxws.creation.ui.widget.JaxWSBottomUpWSDLConfigWidget.wsdlPortName">
+		<item value="ToDoWebServicesPort"/>
+	</list>
+	<list key="org.eclipse.jst.ws.internal.consumption.ui.widgets.test.ClientTestWidget.delegateClassName">
+		<item value="com.ibmcloud.ws.ToDoWebServicesDelegate"/>
+	</list>
+</section>

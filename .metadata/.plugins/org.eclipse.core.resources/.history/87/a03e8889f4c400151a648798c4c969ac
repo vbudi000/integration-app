@@ -1,0 +1,81 @@
+package com.ibmcloud;
+
+import java.io.IOException;
+import java.util.Date;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSConnectionFactory;
+import javax.jms.Queue;
+import javax.jms.QueueConnectionFactory;
+import javax.naming.InitialContext;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+//import javax.annotation.Resource;
+//import javax.inject.*;
+
+
+/**
+ * Servlet implementation class SenderServlet
+ */
+@WebServlet("/SenderServlet")
+//@Resource(name="jms/cloudQCF", lookup="jms/cloudQCF", type=ConnectionFactory.class)
+public class SenderServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	//@Inject
+	//@JMSConnectionFactory("jms/cloudQCF")
+	private JMSContext jmsContext;
+
+	//@Resource(name = "jms/cloudQ", lookup = "jms/cloudQ", type=Queue.class)
+	private Queue queue;
+	
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SenderServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Date dt = new Date();
+		String msg = "Test message " + dt;
+		if (request.getParameter("msg") != null) {
+			msg = msg + " " + request.getParameter("msg");
+		}
+		try {
+			QueueConnectionFactory cf1 = (QueueConnectionFactory) new InitialContext().lookup("jms/cloudQCF");
+			queue = (Queue) new InitialContext().lookup("jms/cloudQ");
+
+			// Creating Context
+			jmsContext = cf1.createContext();
+			// Creating Producer using JMSContext
+			JMSProducer producer = jmsContext.createProducer();
+			// Creating Consumer using JMSContext
+			//JMSConsumer consumer = jmsContext.createConsumer(queue);
+			// Creating Text Message using JMSContext
+			//TextMessage message = jmsContext.createTextMessage();
+			producer.send(queue, msg);
+			System.out.println("Message sent!");
+			response.getWriter().append("Message '"+ msg + "' sent: "+dt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

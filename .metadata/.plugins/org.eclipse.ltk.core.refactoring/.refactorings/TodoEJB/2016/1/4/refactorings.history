@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.ibmcloud.data&apos; to &apos;BackEndWS/src&apos;&#x0D;&#x0A;- Original project: &apos;TodoEJB&apos;&#x0D;&#x0A;- Destination element: &apos;BackEndWS/src&apos;&#x0D;&#x0A;- Original element: &apos;TodoEJB/ejbModule/com.ibmcloud.data&apos;" description="Copy package" destination="=BackEndWS/src" element1="/ejbModule&lt;com.ibmcloud.data" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1453165603208" version="1.0"/>
+</session>

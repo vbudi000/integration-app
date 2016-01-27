@@ -1,0 +1,81 @@
+package com.ibmcloud;
+
+import com.ibmcloud.view.ToDoBeanLocal;
+import com.ibmcloud.data.*;
+import com.ibmcloud.view.ToDoBeanRemote;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.annotation.Resource;
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.sql.DataSource;
+
+/**
+ * Session Bean implementation class ToDoBean
+ */
+@Stateless(mappedName = "ejb\todobean")
+@Local(ToDoBeanLocal.class)
+@Remote(ToDoBeanRemote.class)
+@LocalBean
+public class ToDoBean implements ToDoBeanRemote, ToDoBeanLocal {
+
+	@Resource(lookup = "jdbc/postgreSQL")
+	DataSource ds;
+
+    /**
+     * Default constructor. 
+     */
+    public ToDoBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public Operation addUser(String name, String password) {
+    	Operation op = new Operation(); 
+    	User user;
+		Statement stmt = null;
+	    String query = "select name, password from USERS";
+	    try {
+		    Connection con = ds.getConnection();
+	    	stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(query);
+	    	while (rs.next()) {
+	    		String nm = rs.getString("name");
+	    		String pw = rs.getString("password");
+	    	}
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+	    } 
+
+    	return op;
+    }
+
+    public User authUser(String name, String password) {
+    	User user = new User(name,password);
+    	return user;
+    }
+
+    public User delUser(String name, String password) {
+    	return null;
+    }
+    
+    public ToDo addToDo(String name, String category, String description) {
+    	ToDo todo = new ToDo(name,category,1,description);
+    	return todo;
+    }
+
+    public ToDo delToDo(String name, String category, String description) {
+    	return null;
+    }
+
+    public ToDo[] listToDo(String name) {
+    	ToDo[] todos = new ToDo[10];
+    	return todos;
+    }
+}

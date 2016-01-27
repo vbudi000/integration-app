@@ -1,0 +1,52 @@
+package com.ibmcloud.ws;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.servlet.http.HttpServlet;
+
+import com.ibmcloud.ToDoBean;
+import com.ibmcloud.data.Operation;
+
+@Stateless
+public class ToDoWebServices {
+	@EJB(name="ejb/ToDoBean",beanName="ToDoBean")
+	private ToDoBean todo;
+	
+	public Operation addUser(String name, String password) {
+		return todo.addUser(name, password);
+	}
+	
+	public Operation authUser(String name, String password) {
+		String[] s = new String[4];
+		s[0] = "java:global/BackEnd/TodoEJB/ToDoBean";
+		s[1] = "java:comp/env/ejb/ToDoBean";
+		s[2] = "java:global/BackEnd/ToDoBean";
+		s[3] = "java:app/TodoEJB/ToDoBean";
+		int i = 0;
+		while ((todo==null) & (i<4)) {
+			try {
+				String a = s[i];i++;
+				System.out.println("WS-"+name+" "+password+" todo=null "+a);
+				InitialContext c = new InitialContext();
+				todo = (ToDoBean) c.lookup(a);
+			} catch (javax.naming.NameNotFoundException e) {
+			} catch (Exception e) {
+			}
+		}
+		return todo.authUser(name, password);
+	}
+	
+	public Operation addToDo(String name, String category, String description) {
+		return todo.addToDo(name, category, description);
+	}
+	
+	public Operation delToDo(String name, int id, String category, String description) {
+		return todo.delToDo(name, id, category, description);
+	}
+	
+	public Operation listToDo(String name) {
+		return todo.listToDo(name);
+	}
+}

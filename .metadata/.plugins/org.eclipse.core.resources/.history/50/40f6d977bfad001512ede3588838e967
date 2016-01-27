@@ -1,0 +1,121 @@
+package com.ibmcloud;
+
+import com.ibmcloud.ToDoBean;
+import com.ibmcloud.data.*;
+import java.io.IOException;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TestToDo
+ */
+@WebServlet("/TestToDo")
+public class TestToDo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+    @EJB
+	private ToDoBean todoBean;
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TestToDo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String op = request.getParameter("op");
+		response.getWriter().append("<p>Served at: ").append(request.getContextPath()).append(request.getQueryString()).append("</p>");
+		if (op==null || op.isEmpty()) {
+			response.getWriter().append("<p><b>Error</b>: No operation, exiting</p>");
+		} else {
+			response.getWriter().append("<p>Operation: "+op+"</p>");
+			if (op.equals("addUser")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("password")!=null)) {
+					Operation opr = todoBean.addUser(request.getParameter("name"), request.getParameter("password"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>"+opr.getResult().toString()+"</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			} else if (op.equals("authUser")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("password")!=null)) {
+					Operation opr = todoBean.authUser(request.getParameter("name"), request.getParameter("password"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>Authenticated</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			} else if (op.equals("delUser")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("password")!=null)) {
+					Operation opr = todoBean.delUser(request.getParameter("name"), request.getParameter("password"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>User deleted</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			} else if (op.equals("addTodo")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("category")!=null) && (request.getParameter("description")!=null)) {
+					Operation opr = todoBean.addToDo(request.getParameter("name"), request.getParameter("category"), request.getParameter("description"));
+					if (opr.getRC()==0) {
+						response.getWriter().append("<p>"+opr.getResult().toString()+"</p>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+
+			} else if (op.equals("delTodo")) {
+				if ((request.getParameter("name")!=null) && (request.getParameter("category")!=null) && (request.getParameter("description")!=null) && (request.getParameter("id")!=null)) {
+					int cid = -1;
+					try {
+						cid = Integer.parseInt(request.getParameter("id"));
+					} catch (NumberFormatException nfe) {	}
+					if (cid>=0) {
+						Operation opr = todoBean.delToDo(request.getParameter("name"), cid, request.getParameter("category"), request.getParameter("description"));
+						if (opr.getRC()==0) {
+							response.getWriter().append("<p>Todo deleted</p>");
+						} else {
+							response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+						}
+					} else {
+						response.getWriter().append("<p><b>Error</b>: Number format exception</p>");
+					}
+				}
+			} else if (op.equals("listTodo")) {
+				if ((request.getParameter("name")!=null)) {
+					Operation opr = todoBean.listToDo(request.getParameter("name"));
+					if (opr.getRC()==0) {
+						Object[] todolist = opr.getResults();
+						int num = todolist.length;
+						response.getWriter().append("<ol>");
+						for (int i=0;i<num;i++) {
+							response.getWriter().append("<li>"+todolist[i].toString()+"</li>");
+						}
+						response.getWriter().append("</ol>");
+					} else {
+						response.getWriter().append("<p><b>Error</b>: "+opr.getMessage()+"</p>");
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

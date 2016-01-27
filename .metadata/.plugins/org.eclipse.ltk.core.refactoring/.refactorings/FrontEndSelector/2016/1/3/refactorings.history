@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;FrontEndSelector/WebContent/WEB-INF/properties&apos; to &apos;classes&apos;" description="Rename resource &apos;properties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/WEB-INF/properties" name="classes" stamp="1452476112359" updateReferences="true"/>
+</session>

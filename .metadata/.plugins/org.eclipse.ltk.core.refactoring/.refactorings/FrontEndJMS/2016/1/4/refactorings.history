@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;FrontEndJMS&apos;&#x0D;&#x0A;- Original project: &apos;FrontEndJMS&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.ibmcloud.servlet.ToDoListServlet.java&#x0D;&#x0A;     com.ibmcloud.servlet.ToDoServlet.java&#x0D;&#x0A;     com.ibmcloud.servlet.UserLoginServlet.java" description="Delete elements" element1="/src&lt;com.ibmcloud.servlet{ToDoListServlet.java" element2="/src&lt;com.ibmcloud.servlet{UserLoginServlet.java" element3="/src&lt;com.ibmcloud.servlet{ToDoServlet.java" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1453571211910" subPackages="false" version="1.0"/>
+</session>

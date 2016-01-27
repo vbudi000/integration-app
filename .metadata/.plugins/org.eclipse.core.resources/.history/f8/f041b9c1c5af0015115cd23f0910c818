@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="BackEndREST">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
+        <dependent-module archiveName="com.ibm.websphere.appserver.api.json_1.0.11.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/BMX/wlp/dev/api/ibm/com.ibm.websphere.appserver.api.json_1.0.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/BackEndREST/build/classes"/>
+        <property name="context-root" value="BackEndREST1"/>
+    </wb-module>
+</project-modules>

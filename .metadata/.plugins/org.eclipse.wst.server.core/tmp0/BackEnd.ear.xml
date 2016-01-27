@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+    <archive targetInArchive="/TodoEJB.jar">
+        <dir sourceOnDisk="C:\BMX\workspace\TodoEJB\build\classes" targetInArchive="/"/>
+    </archive>
+    <archive targetInArchive="/TodoEJBClient.jar">
+        <dir sourceOnDisk="C:\BMX\workspace\TodoEJBClient\build\classes" targetInArchive="/"/>
+    </archive>
+    <archive targetInArchive="/BackEndREST.war">
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndREST\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndREST\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/BackEndWS.war">
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndWS\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndWS\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <archive targetInArchive="/BackEndJMS.war">
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndJMS\WebContent" targetInArchive="/"/>
+        <dir sourceOnDisk="C:\BMX\workspace\BackEndJMS\build\classes" targetInArchive="/WEB-INF/classes"/>
+    </archive>
+    <dir sourceOnDisk="C:\BMX\workspace\BackEnd" targetInArchive="/"/>
+</archive>

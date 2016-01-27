@@ -1,0 +1,35 @@
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <!-- feature>jsp-2.2</feature -->
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+
+	<!-- Automatically expand WAR files and EAR files -->
+	<applicationManager autoExpand="true"/>
+
+    <applicationMonitor updateTrigger="mbean"/>
+    <dataSource jndiName="jdbc/postgreSQL">
+        <jdbcDriver javax.sql.XADataSource="org.postgresql.xa.PGXADataSource">
+            <library name="postgreLibrary">
+                <fileset dir="${shared.resource.dir}"/>
+            </library>
+        </jdbcDriver>
+        <properties databaseName="postgres" password="passw0rd" portNumber="5432" serverName="localhost" user="postgres"/>
+    </dataSource>
+    <messagingEngine>
+    	<queue id="cloudQ"/>
+    </messagingEngine>
+    <connectionManager id="ConMgr2" maxPoolSize="2"/>
+    <jmsQueue jndiName="jms/cloudQ">
+    	<properties.wasJms queueName="cloudQ"/>
+    </jmsQueue>
+    <jmsQueueConnectionFactory connectionManagerRef="ConMgr2" jndiName="jms/cloudQCF">
+    	<properties.wasJms/>
+    </jmsQueueConnectionFactory>
+
+    <enterpriseApplication id="BackEnd" location="BackEnd.ear" name="BackEnd"/>
+</server>

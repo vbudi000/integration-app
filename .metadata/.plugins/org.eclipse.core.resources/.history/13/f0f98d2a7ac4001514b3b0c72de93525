@@ -1,0 +1,111 @@
+package com.ibmcloud.jms;
+
+import java.io.StringReader;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
+import javax.ejb.MessageDriven;
+import javax.jms.JMSContext;
+import javax.jms.JMSException;
+import javax.jms.JMSProducer;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.QueueConnectionFactory;
+import javax.jms.TextMessage;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import javax.naming.InitialContext;
+
+import com.ibmcloud.ToDoBean;
+import com.ibmcloud.data.Operation;
+import com.ibmcloud.data.ToDo;
+import com.ibmcloud.data.User;
+
+/**
+ * Message-Driven Bean implementation class for: ToDoMDB
+ */
+@MessageDriven(
+		activationConfig = { @ActivationConfigProperty(
+				propertyName = "destinationType", propertyValue = "javax.jms.Queue"), @ActivationConfigProperty(
+				propertyName = "destination", propertyValue = "jms/cloudQ")
+		}, 
+		mappedName = "cloudQ")
+public class ToDoMDB implements MessageListener {
+	
+	@EJB
+	private ToDoBean todo; 
+	private JMSContext jmsContext;
+	private JMSProducer producer;
+
+    public ToDoMDB() {
+    	try {
+		QueueConnectionFactory cf1 = (QueueConnectionFactory) new InitialContext().lookup("jms/cloudQCF");
+		jmsContext = cf1.createContext();
+		producer = jmsContext.createProducer();
+    	} catch (Exception e) {
+    		System.out.println("######## Naming exception ########");
+    	}
+    }
+	
+	/**
+     * @see MessageListener#onMessage(Message)
+     */
+    public void onMessage(Message message) {
+        try {
+			String msgtxt = ((TextMessage) message).getText();
+			System.out.println("--"+msgtxt+"--");
+			JsonReader jsonReader = Json.createReader(new StringReader(msgtxt));
+			JsonObject req = jsonReader.readObject();
+			jsonReader.close();
+			String action = req.getString("action");
+			if (action.equals("addUser")) {
+				Operation op = todo.addUser(req.getString("name"), req.getString("password"));
+				producer.send(message.getJMSReplyTo(), serialize(op));				
+			} else if (action.equals("authUser")) {
+				Operation op = todo.authUser(req.getString("name"), req.getString("password"));
+				producer.send(message.getJMSReplyTo(), serialize(op));				
+			} else if (action.equals("addToDo")) {
+				Operation op = todo.addToDo(req.getString("name"), req.getString("category"), req.getString("description"));
+				producer.send(message.getJMSReplyTo(), serialize(op));				
+			} else if (action.equals("delToDo")) {
+				Operation op = todo.delToDo(req.getString("name"), req.getInt("id"), req.getString("category"), req.getString("description"));
+				producer.send(message.getJMSReplyTo(), serialize(op));				
+			} else if (action.equals("listToDo")) {
+				Operation op = todo.listToDo(req.getString("name"));
+				producer.send(message.getJMSReplyTo(), serialize(op));				
+			} else {
+				producer.send(message.getJMSReplyTo(), "{\"rc\":111, \"message\": \"unknown action\" }" );
+			}
+		} catch (JMSException e) {
+			System.out.println("#### Unhandled exception ####");
+		}
+    }
+
+    private String serialize(Operation op) {
+    	String res = "";
+    	JsonObjectBuilder job = Json.createObjectBuilder();
+    	job.add("rc", op.getRC()).add("message", op.getMessage());
+    	if (op.getResult()!=null) {
+    		if (op.getResult() instanceof com.ibmcloud.data.User) {
+    			User u = (User) op.getResult();
+    			String u1 = Json.createObjectBuilder().add("name", u.getName()).add("password", u.getPassword()).build().toString();
+    			job.add("result", u1);
+    		} else {
+    			ToDo t = (ToDo) op.getResult();
+    			String t1 = Json.createObjectBuilder().add("name", t.getName()).add("id", t.getId()).add("description", t.getDescription()).add("category", t.getCategory()).build().toString();
+    			job.add("result", t1);
+    		}
+    	} else if (op.getResults()!=null) {
+    		Object[] tlist = op.getResults();
+    		JsonArrayBuilder jab = Json.createArrayBuilder();
+    		for (int i=0;i<tlist.length;i++) {
+    			ToDo t = (ToDo) tlist[i];
+    			jab.add(Json.createObjectBuilder().add("name", t.getName()).add("id", t.getId()).add("description", t.getDescription()).add("category", t.getCategory()));
+    		}
+    		job.add("results", jab);
+    	}
+    	return job.toString();
+    }
+}

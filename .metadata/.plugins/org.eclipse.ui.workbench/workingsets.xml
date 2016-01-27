@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.EARWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943606538_1" label="EAR Projects" name="EARWorkingSetPage.name">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEnd" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.AppClientWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943606662_2" label="Application Client Projects" name="AppClientWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.EjbWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943606781_3" label="EJB Projects" name="EjbWorkingSetPage.name">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TodoEJB" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.ConnectorWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943606910_4" label="Connector Projects" name="ConnectorWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.WebWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943607058_5" label="Web Projects" name="NewWebWorkingSetPage.name">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndJDBC" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndWS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEndREST" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndJMS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndREST" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEndWS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEndJMS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndSelector" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.JPAWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943607209_6" label="JPA Projects" name="JPAWorkingSet.name"/>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.UtilWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943607438_7" label="Utility Projects" name="WS_UTIL">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TodoEJBClient" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.j2ee.ui.WebFragmentWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943607625_8" label="Web Fragment Projects" name="WebFragmentWorkingSetPage.name"/>
+<workingSet editPageId="com.ibm.etools.project.OthersWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943607797_9" label="Uncategorized Projects" name="OthersWorkingSet.name">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/.gscStore" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/RemoteSystemsTempFiles" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WebSphere Application Server Liberty Profile" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.aries.bundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943608183_10" label="OSGi Bundle Projects" name="OSGi Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.fragmentBundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943608575_11" label="OSGi Fragment Bundle Projects" name="OSGi Fragment Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.applicationWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943608774_12" label="OSGi Application Projects" name="OSGi Application Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.compositeBundleWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943608981_13" label="OSGi Composite Bundle Projects" name="OSGi Composite Bundle Projects"/>
+<workingSet editPageId="com.ibm.etools.aries.subsystemWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943609185_14" label="Liberty Feature Projects" name="Liberty Feature Projects"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1450728144755_16" label="BMX" name="BMX">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Server1" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TodoEJB" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndJMS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/FrontEndREST" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEndWS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/BackEndJMS" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449878804421_0" label="Window Working Set" name="Aggregate for window 1449878804420"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449943609576_15" label="Multiple Working Sets" name="Aggregate:EARWorkingSetPage.name:AppClientWorkingSetPage.name:EjbWorkingSetPage.name:ConnectorWorkingSetPage.name:NewWebWorkingSetPage.name:JPAWorkingSet.name:WS_UTIL:WebFragmentWorkingSetPage.name:OthersWorkingSet.name:OSGi Bundle Projects:OSGi Fragment Bundle Projects:OSGi Application Projects:OSGi Composite Bundle Projects:Liberty Feature Projects:">
+<workingSet IMemento.internal.id="EARWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="AppClientWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="EjbWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="ConnectorWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="NewWebWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="JPAWorkingSet.name"/>
+<workingSet IMemento.internal.id="WS_UTIL"/>
+<workingSet IMemento.internal.id="WebFragmentWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="OthersWorkingSet.name"/>
+<workingSet IMemento.internal.id="OSGi Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Fragment Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Application Projects"/>
+<workingSet IMemento.internal.id="OSGi Composite Bundle Projects"/>
+<workingSet IMemento.internal.id="Liberty Feature Projects"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1450728144828_17" label="Multiple Working Sets" name="Aggregate:EARWorkingSetPage.name:AppClientWorkingSetPage.name:EjbWorkingSetPage.name:ConnectorWorkingSetPage.name:NewWebWorkingSetPage.name:JPAWorkingSet.name:WS_UTIL:WebFragmentWorkingSetPage.name:OthersWorkingSet.name:OSGi Bundle Projects:OSGi Fragment Bundle Projects:OSGi Application Projects:OSGi Composite Bundle Projects:Liberty Feature Projects:BMX:">
+<workingSet IMemento.internal.id="EARWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="AppClientWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="EjbWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="ConnectorWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="NewWebWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="JPAWorkingSet.name"/>
+<workingSet IMemento.internal.id="WS_UTIL"/>
+<workingSet IMemento.internal.id="WebFragmentWorkingSetPage.name"/>
+<workingSet IMemento.internal.id="OthersWorkingSet.name"/>
+<workingSet IMemento.internal.id="OSGi Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Fragment Bundle Projects"/>
+<workingSet IMemento.internal.id="OSGi Application Projects"/>
+<workingSet IMemento.internal.id="OSGi Composite Bundle Projects"/>
+<workingSet IMemento.internal.id="Liberty Feature Projects"/>
+<workingSet IMemento.internal.id="BMX"/>
+</workingSet>
+<mruList name="BMX"/>
+</workingSetManager>

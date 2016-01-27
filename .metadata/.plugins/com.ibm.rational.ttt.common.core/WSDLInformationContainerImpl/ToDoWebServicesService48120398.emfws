@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.rational.test.lt.models.wscore.configuration="http:///com/ibm/rational/test/lt/models/wscore/configuration.ecore">
+  <securityOperationConfiguration>
+    <SecurityPortConfiguration aliasName="DEFAULTCONFIGURATION"/>
+  </securityOperationConfiguration>
+  <keyStore/>
+  <wsdl name="ToDoWebServicesService" key="ToDoWebServicesService">
+    <SimpleProperty value="http://ws.ibmcloud.com/" name="WSDLPROPERTY_TARGETNAMESPACE"/>
+    <SimpleProperty value="e6014e4aa2c022faa79496b12ce3cc4bc51547e6e6014e4aa2c022faa79496b12ce3cc4bc51547e690d62811aef5bad7c80e591de168c95ec4a93166" name="WSDLPROPERTY_HASH"/>
+    <SimpleProperty value="e6014e4aa2c022faa79496b12ce3cc4bc51547e6e6014e4aa2c022faa79496b12ce3cc4bc51547e69ae2bc80e3bcb67e1685ae53d98bd64898335c6d" name="WSDLPROPERTY_PREVIOUSHASH"/>
+    <SimpleProperty value="1453354553120" name="WSDLPROPERTY_SYNCHROSTAMP"/>
+    <ResourceProxy portablePath="/BackEndWS/WebContent/WEB-INF/wsdl/ToDoWebServicesService.wsdl" timeStamp="1453354553120"/>
+    <WsdlInformationContainer versionContainer="8.7"/>
+    <WsdlBinding name="ToDoWebServicesPortBinding">
+      <SimpleProperty value="SoapDocumentBinding" name="WSDLBINDINGPROPERTY_TYPE"/>
+      <SimpleProperty value="http://schemas.xmlsoap.org/soap/http" name="WSDLBINDINGPROPERTY_TRANSPORT_TYPE"/>
+      <SimpleProperty value="true" name="Soap11Binding"/>
+      <SimpleProperty value="false" name="Soap12Binding"/>
+      <SimpleProperty value="false" name="HttpBinding"/>
+      <SimpleProperty value="{http://ws.ibmcloud.com/}ToDoWebServices" name="WSDLBINDING_SERVICE_NAME"/>
+      <WsdlOperation name="addUser" key="addUser">
+        <WsdlPort name="ToDoWebServicesPort" uniqueID="1774055667SEPARATOR11b17c34-6796-46e5-a83c-c6c6c0b786dc">
+          <SimpleProperty value="http://localhost:9080/BackEndWS/ToDoWebServicesService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/addUserRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="addUser" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/addUserResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="addUserResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+      <WsdlOperation name="authUser" key="authUser">
+        <WsdlPort name="ToDoWebServicesPort" uniqueID="210796518SEPARATOR9afe182a-8b14-476c-80f5-bd672484a713">
+          <SimpleProperty value="http://localhost:9080/BackEndWS/ToDoWebServicesService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/authUserRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="authUser" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/authUserResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="authUserResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+      <WsdlOperation name="addToDo" key="addToDo">
+        <WsdlPort name="ToDoWebServicesPort" uniqueID="-1433886583SEPARATORe1f1fa48-9293-4494-8b58-22e00c940e1d">
+          <SimpleProperty value="http://localhost:9080/BackEndWS/ToDoWebServicesService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/addToDoRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="addToDo" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/addToDoResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="addToDoResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+      <WsdlOperation name="delToDo" key="delToDo">
+        <WsdlPort name="ToDoWebServicesPort" uniqueID="-744140538SEPARATOR04a7db33-e43f-43a8-9468-568a0ed4bbae">
+          <SimpleProperty value="http://localhost:9080/BackEndWS/ToDoWebServicesService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/delToDoRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="delToDo" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/delToDoResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="delToDoResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+      <WsdlOperation name="listToDo" key="listToDo">
+        <WsdlPort name="ToDoWebServicesPort" uniqueID="-2100585340SEPARATOR9c89798c-d806-426b-897f-ceba405e374c">
+          <SimpleProperty value="http://localhost:9080/BackEndWS/ToDoWebServicesService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/listToDoRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="listToDo" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://ws.ibmcloud.com/ToDoWebServices/listToDoResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://ws.ibmcloud.com/" localPart="listToDoResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+    </WsdlBinding>
+  </wsdl>
+</com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer>

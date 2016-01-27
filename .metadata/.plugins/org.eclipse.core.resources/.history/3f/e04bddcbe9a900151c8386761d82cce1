@@ -1,0 +1,177 @@
+package com.ibmcloud;
+
+import com.ibmcloud.view.ToDoBeanLocal;
+import com.ibmcloud.data.*;
+import com.ibmcloud.view.ToDoBeanRemote;
+
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.annotation.Resource;
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.sql.DataSource;
+
+/**
+ * Session Bean implementation class ToDoBean
+ */
+@Stateless(mappedName = "ejb\todobean")
+@Local(ToDoBeanLocal.class)
+@Remote(ToDoBeanRemote.class)
+@LocalBean
+public class ToDoBean implements ToDoBeanRemote, ToDoBeanLocal {
+
+	@Resource(lookup = "jdbc/postgreSQL")
+	DataSource ds;
+
+    /**
+     * Default constructor. 
+     */
+    public ToDoBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public Operation addUser(String name, String password) {
+    	Operation op = new Operation(); 
+    	User user;
+		Statement stmt = null;
+		String check = "SELECT count(*) FROM users WHERE NAME = '+name+'";
+	    String insert = "INSERT into users VALUES ('"+name+"','"+password+"')";
+	    
+	    try {
+		    Connection con = ds.getConnection();
+	    	stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(check);
+	    	int numrows = rs.getInt(0);
+	    	if (numrows==0) {
+	    		stmt = con.createStatement();
+	    		stmt.executeUpdate(insert);
+	    		user = new User(name, password);
+	    		op.setResult(user);
+	    	} else {
+	    		op.setMessage("User already existed");
+	    		op.setRC(10);
+	    	}
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+    		op.setMessage("SQL exception: "+e.getMessage()+"; SQL state: "+e.getSQLState());
+    		op.setRC(11);
+	    } 
+
+    	return op;
+    }
+
+    public Operation authUser(String name, String password) {
+    	Operation op = new Operation();
+    	
+		Statement stmt = null;
+		String check = "SELECT count(*) FROM users WHERE NAME = '+name+'";
+		String getpw = "SELECT password FROM users WHERE NAME = '+name+'";
+	    
+	    try {
+		    Connection con = ds.getConnection();
+	    	stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(check);
+	    	int numrows = rs.getInt(0);
+	    	if (numrows==1) {
+	    		stmt = con.createStatement();
+	    		ResultSet rs1 = stmt.executeQuery(getpw);
+	    		String pw = rs1.getString(0);
+	    		if (!pw.equals(password)) {
+	    			op.setRC(400);
+	    			op.setMessage("Wrong password");
+	    		} else {
+	    			User u = new User(name,password);
+	    			op.setResult(u);
+	    		}
+	    	} else {
+	    		op.setMessage("User does not exist");
+	    		op.setRC(10);
+	    	}
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+    		op.setMessage("SQL exception: "+e.getMessage()+"; SQL state: "+e.getSQLState());
+    		op.setRC(11);
+	    } 
+
+    	return op;
+    }
+
+    public Operation delUser(String name, String password) {
+    	Operation op = new Operation();
+
+		Statement stmt = null;
+		String check = "SELECT count(*) FROM users WHERE NAME = '+name+'";
+	    String delete = "DELETE from users WHERE name = '"+name+"'";
+	    
+	    try {
+		    Connection con = ds.getConnection();
+	    	stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(check);
+	    	int numrows = rs.getInt(0);
+	    	if (numrows==1) {
+	    		stmt = con.createStatement();
+	    		stmt.executeUpdate(delete);
+
+	    	} else {
+	    		op.setMessage("User does not exist");
+	    		op.setRC(10);
+	    	}
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+    		op.setMessage("SQL exception: "+e.getMessage()+"; SQL state: "+e.getSQLState());
+    		op.setRC(11);
+	    } 
+
+    	
+    	return op;
+    }
+    
+    public Operation addToDo(String name, String category, String description) {
+    	Operation op = new Operation();
+    	// check name from user table
+    	// get largest id 
+		Statement stmt = null;
+		String namecheck = "SELECT count(*) FROM users WHERE NAME = '+name+'";
+		String getId = "SELECT max(id) FROM todos WHERE NAME = '"+name+"'";
+	    try {
+		    Connection con = ds.getConnection();
+	    	stmt = con.createStatement();
+	    	ResultSet rs = stmt.executeQuery(namecheck);
+	    	int numrows = rs.getInt(0);
+	    	if (numrows==1) { // name found
+	    		stmt = con.createStatement();
+	    		rs = stmt.executeQuery(getId);
+	    		int newId = rs.getInt(0) + 1;
+	    	    String insert = "INSERT into todos VALUES ('"+name+"','"+category+"',"+newId+",'"+description+"')";
+	    		stmt = con.createStatement();
+	    		stmt.executeUpdate(insert);
+	        	ToDo todo = new ToDo(name,category,newId,description);
+	        	op.setResult(todo);
+	    	} else {
+	    		op.setMessage("User does not exist");
+	    		op.setRC(10);
+	    	}
+	    } catch (SQLException e ) {
+	    	e.printStackTrace();
+    		op.setMessage("SQL exception: "+e.getMessage()+"; SQL state: "+e.getSQLState());
+    		op.setRC(11);
+	    } 
+
+    	return op;
+    }
+
+    public ToDo delToDo(String name, String category, String description) {
+    	return null;
+    }
+
+    public ToDo[] listToDo(String name) {
+    	ToDo[] todos = new ToDo[10];
+    	return todos;
+    }
+}
